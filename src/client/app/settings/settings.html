@@ -1,0 +1,31 @@
+<md-content layout="column" flex class="att-settings">
+    <md-toolbar class="md-primary">
+        <div class="md-toolbar-tools" layout="row">
+            <h2>Settings</h2>
+            <span flex></span>
+        </div>
+    </md-toolbar>
+    <md-content flex layout-margin layout="column">
+        <md-list ng-cloak>
+            <md-subheader class="md-no-sticky">
+                Application Settings
+            </md-subheader>
+            <md-list-item class="secondary-button-padding"
+                    ng-click="vm.clearCache()">
+                <md-icon md-font-icon="fa-hdd-o" class="fa s24"></md-icon>
+                <p>Clear Application Cache</p>
+            </md-list-item>
+            <md-list-item class="secondary-button-padding"
+                    ng-click="vm.showThemeDialog($event)">
+                <md-icon md-font-icon="fa-eyedropper" class="fa s24"></md-icon>
+                <p>Set Application Theme Color</p>
+            </md-list-item>
+            <md-divider></md-divider>
+        </md-list>
+    </md-content>
+    <md-toolbar flex layout="row" class="bottom-toolbar md-primary md-hue-1 md-whiteframe-z2">
+        <div class="md-toolbar-tools bottom-toolbar-tools" flex>
+
+        </div>
+    </md-toolbar>
+</md-content>
