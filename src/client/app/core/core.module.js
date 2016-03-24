@@ -6,7 +6,6 @@
                 'ngAnimate', 'ngSanitize', 'blocks.amDialog',
                 'blocks.exception', 'blocks.logger', 'blocks.router',
                 'ui.router', 'ngplus', 'ngMaterial',
-                'ngSanitize', 'ncy-angular-breadcrumb',
-                'angular-cache'
+                'ngSanitize', 'angular-cache'
             ]);
 })();

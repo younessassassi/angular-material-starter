@@ -32,19 +32,13 @@
         }
 
         function isCurrent(route) {
-            if (!route.title || !$state.current || !$state.current.title) {
+               if (!route.title || !$state.current || !$state.current.title) {
                 return '';
             }
-            var menuName = route.title;
-            // var parentMenuName = angular.isUndefined(route.settings) ?
-            //                      route.settings.parentMenuName.substr(0, menuName.length) : '';
-            var stateMenuName = $state.current.title.substr(0, menuName.length);
-            // if (stateMenuName === menuName || stateMenuName === parentMenuName) {
-            //     return 'current';
-            // }
-            // return '';
-            return $state.current.title.substr(0,
-                menuName.length) === menuName ? 'md-accent md-hue-3 md-raised' : '';
+            var currentStateName = route.name;
+            var navStateName = $state.current.name;
+
+            return currentStateName === navStateName ? 'md-accent md-hue-3 md-raised' : '';
         }
     }
 })();

@@ -22,21 +22,16 @@
     core.config(configure);
 
     configure.$inject = ['$logProvider', 'routerHelperProvider',
-                         'exceptionHandlerProvider', '$breadcrumbProvider'];
+                         'exceptionHandlerProvider'];
     /* @ngInject */
     function configure($logProvider, routerHelperProvider,
-                       exceptionHandlerProvider, $breadcrumbProvider) {
+                       exceptionHandlerProvider) {
         if ($logProvider.debugEnabled) {
             $logProvider.debugEnabled(true);
         }
         exceptionHandlerProvider.configure(config.appErrorPrefix);
         routerHelperProvider.configure({
             docTitle: config.appTitle + ': '
-        });
-
-        $breadcrumbProvider.setOptions({
-            prefixStateName: 'dashboard',
-            includeAbstract: true
         });
     }
 })();

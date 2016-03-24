@@ -1,8 +1,5 @@
-@bottomToolBarHeight: 55px;
-@formlyLabelColor: rgba(0, 0, 0, 0.258824);
-@formlyLabelColorAnswered: rgba(0, 0, 0, 0.54);
 @cardHeaderColor: rgba(239, 239, 239, 1);
-
+@bottomToolBarHeight: 55px;
 
 * {
     /*-webkit-box-shadow: none !important;
@@ -87,32 +84,6 @@ md-card-header.card-header {
     background-color: @cardHeaderColor;
 }
 
-/** md-list **/
-.att-settings md-divider {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.att-settings md-list-item > p,
-.att-settings md-list-item > .md-list-item-inner > p,
-.att-settings md-list-item .md-list-item-inner > p,
-.att-settings md-list-item .md-list-item-inner > .md-list-item-inner > p {
-    -webkit-user-select: none;
-    /* Chrome all / Safari all */
-    -moz-user-select: none;
-    /* Firefox all */
-    -ms-user-select: none;
-    /* IE 10+ */
-    user-select: none;
-    /* Likely future */
-}
-
-.att-settings .secondary-button-padding p {
-    padding-right: 100px;
-}
-
-
-/** end of md-list **/
 /** md-card */
 md-card-content .survey-option {
   float: left;
@@ -163,35 +134,10 @@ md-toolbar md-menu {
 }
 
 /** Side Nav **/
-md-sidenav {
-    margin: 0;
-}
-
-md-sidenav,
-md-sidenav md-list {
-    list-style: none;
-    padding: 0;
-}
-
-md-sidenav md-list-item {
-    margin: 0;
-}
-
-// md-sidenav md-list-item {
-//     border-bottom: 1px solid;
-// }
-md-sidenav md-list-item:nth-child(1) {
-    border-top: none;
-}
-
-.md-whiteframe-glow-z1 {
-    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 0px 2px 2px rgba(0, 0, 0, 0.098), 0px 0px 5px 1px rgba(0, 0, 0, 0.084);
-}
 
 md-sidenav .md-button {
     box-shadow: none !important;
     border-radius: 0;
-    /*color: white;*/
     cursor: pointer;
     display: block;
     align-items: inherit;
@@ -201,25 +147,12 @@ md-sidenav .md-button {
     overflow: hidden;
     padding: 0px 16px;
     text-align: left;
-    // text-decoration: none;
     white-space: normal;
     width: 100%;
 }
 
 /** End of Side Nav */
 
-.att-split-button {
-    margin-right:0;
-    padding-right:0;
-    padding-bottom:8px;
-}
-
-.att-split-button-icon {
-    height: 40px !important;
-    width: 40px !important;
-    padding-left: 0 !important;
-    margin-left: 0 !important;
-}
 
 
 /*** Content ***/
@@ -228,33 +161,6 @@ md-sidenav .md-button {
 }
 
 /*** End of Content ***/
-
-
-/*** BreadCrumb ***/
-
-.breadcrumbLinkWrapper {
-    overflow: hidden;
-    margin: 0;
-}
-
-.breadcrumbLink {
-    min-width: 40px;
-    margin-right: 0;
-    margin-left: 0;
-}
-
-span .breadcrumbDivider {
-    width: 5px !important;
-    min-width: 5px;
-    margin-left: 0;
-    margin-right: 0;
-    padding-left: 0;
-    padding-right: 0;
-}
-
-
-/*** End of BreadCrumb ***/
-
 
 /*** md-icon ***/
 .form-admin-container {
@@ -290,11 +196,6 @@ md-icon.s32 span {
 /*** end of md-icon ***/
 
 /*** End of Angular Material ***/
-
-
-
-/* end of formly form styles */
-
 
 /* Angular Material */
 html,
@@ -333,7 +234,6 @@ md-toolbar h1 {
     margin: auto;
 }
 
-
 .bottom-toolbar {
     height: @bottomToolBarHeight;
     min-height: @bottomToolBarHeight;
@@ -342,21 +242,6 @@ md-toolbar h1 {
 
 .bottom-toolbar-tools {
     height: @bottomToolBarHeight;
-}
-
-/* Sidenav area */
-
-md-sidenav,
-md-sidenav.md-locked-open,
-md-sidenav.md-closed.md-locked-open-add-active {
-    min-width: 200px !important;
-    width: 85vw !important;
-    max-width: 250px !important;
-}
-
-
-md-sidenav md-list {
-    padding: 0px 0px 8px 0px;
 }
 
 
@@ -631,29 +516,18 @@ span.name {
 /* Responsive */
 
 @media (max-width: 480px) {
-    .nav-toolbar-button {
-        margin: 0;
-        padding: 0;
-        max-width: 40px;
-    }
 
 }
 
 @media screen and (max-width: 767px) {
-   .breadcrumbLink {
-        font-size: 0.8em;
-    }
+
 }
 
 @media (min-width: 768px) and (max-width: 959px) {
-    // .att-form-edit .gridster-item {
-    //     max-height: 55px;
-    // }
+
 }
 
 
 @media screen and (min-width: 960px) {
-    .breadcrumbLink {
-        font-size: 1em;
-    }
+
 }
