@@ -103,6 +103,18 @@ gulp.task('less-watcher', function() {
 });
 
 /**
+ * move images
+ * @return {Stream}
+ */
+gulp.task('images-src', ['clean-images'], function () {
+    log('copying images');
+
+    return gulp
+            .src(config.images)
+            .pipe(gulp.dest(config.build + 'images'));
+});
+
+/**
  * Create $templateCache from the html templates
  * @return {Stream}
  */
@@ -189,6 +201,23 @@ gulp.task('build-specs', ['templatecache'], function(done) {
 });
 
 /**
+ * Build source files
+ */
+gulp.task('build-src',
+        ['deploy-src', 'images-src', 'fonts'], function () {
+    log('Building everything');
+
+    var msg = {
+        title: 'gulp build source files',
+        subtitle: 'Deployed to the build folder',
+        message: 'Running `gulp serve-dev-tongo`'
+    };
+    del(config.temp);
+    log(msg);
+    notify(msg);
+});
+
+/**
  * Build everything
  * This is separate so we can run tests on
  * optimize before handling image or fonts
@@ -204,6 +233,45 @@ gulp.task('build', ['optimize', 'images', 'fonts'], function() {
     del(config.temp);
     log(msg);
     notify(msg);
+});
+
+/**
+ * move all src files to a build folder,
+ * and inject them into the new index.html
+ * @return {Stream}
+ */
+
+gulp.task('deploy-src', ['inject'], function () {
+    log('Deploying all source files - js, css, and html');
+
+    var assets = $.useref.assets({searchPath: './'});
+    // Filters are named for the gulp-useref path
+    var cssFilter = $.filter('**/*.css');
+    var jsAppFilter = $.filter('**/' + config.optimized.app);
+    var jslibFilter = $.filter('**/' + config.optimized.lib);
+
+    var templateCache = config.temp + config.templateCache.file;
+
+    return gulp
+            .src(config.index)
+            .pipe($.plumber())
+            .pipe(inject(templateCache, 'templates'))
+            .pipe(assets) // Gather all assets from the html with useref
+                         // Get the css
+            .pipe(cssFilter)
+            .pipe(cssFilter.restore())
+            // Get the custom javascript
+            .pipe(jsAppFilter)
+            .pipe($.ngAnnotate({add: true}))
+            .pipe(getHeader())
+            .pipe(jsAppFilter.restore())
+            // Get the vendor javascript
+            .pipe(jslibFilter)
+            .pipe(jslibFilter.restore())
+            // Apply the concat and file replacement with useref
+            .pipe(assets.restore())
+            .pipe($.useref())
+            .pipe(gulp.dest(config.build));
 });
 
 /**
@@ -337,6 +405,15 @@ gulp.task('serve-dev', ['inject'], function() {
  * --nosync
  */
 gulp.task('serve-build', ['build'], function() {
+    serve(false /*isDev*/);
+});
+
+/**
+ * serve the full source environment
+ * --debug-brk or --debug
+ * --nosync
+ */
+gulp.task('serve-src', ['build-src'], function () {
     serve(false /*isDev*/);
 });
 

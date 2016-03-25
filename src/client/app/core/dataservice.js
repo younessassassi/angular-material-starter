@@ -6,11 +6,20 @@
         .factory('dataservice', dataservice);
 
     /* @ngInject */
-    function dataservice($http, $q, exception, logger) {
+    function dataservice($http, $q, CacheFactory, exception, logger) {
         var service = {
             getPeople: getPeople,
-            getMessageCount: getMessageCount
+            getMessageCount: getMessageCount,
+            removeAllItemsFromCache: removeAllItemsFromCache
         };
+
+        var staticCache;
+        if (!CacheFactory.get('staticCache')) {
+            CacheFactory('staticCache', {
+                storageMode: 'localStorage' // This cache will use `localStorage`.
+            });
+        }
+        staticCache = CacheFactory.get('staticCache');
 
         return service;
 
@@ -28,6 +37,10 @@
             function fail(e) {
                 return exception.catcher('XHR Failed for getPeople')(e);
             }
+        }
+
+        function removeAllItemsFromCache() {
+            staticCache.removeAll();
         }
     }
 })();

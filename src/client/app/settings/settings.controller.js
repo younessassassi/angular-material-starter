@@ -9,8 +9,7 @@
         .controller('SettingsController', SettingsController);
 
     /* @ngInject */
-    function SettingsController($rootScope, $mdDialog, $window, $timeout,
-        CacheFactory, confirmDialog, dataservice, logger) {
+    function SettingsController($rootScope, $mdDialog, confirmDialog, dataservice, logger) {
         var vm = this;
         vm.clearCache = clearCache;
         vm.showThemeDialog = showThemeDialog;
@@ -44,8 +43,6 @@
             confirmDialog.confirmationDialog(title, message, okText, cancelText)
                 .then(function() {
                     dataservice.removeAllItemsFromCache();
-                    // since cache is cleared, we need to set the temp id again
-                    dataservice.setTempUserId(angular.uppercase(vm.tempUserId));
                 });
         }
     }
